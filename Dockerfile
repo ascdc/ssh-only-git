@@ -20,9 +20,8 @@ RUN DEBIAN_FRONTEND=noninteractive && \
 	echo "export ll='ls -al'" >> /home/www/.bash_profile && \	
 	ln -s /bin/date /home/www/programs/ && \
 	ln -s /bin/ls /home/www/programs/ && \
-	ln -s /usr/bin/git /home/www/programs/ && \
-	chattr +i /home/www/.bash_profile && \
-	chattr -i /home/www/.bash_profile
+	ln -s /usr/bin/git /home/www/programs/ 
+	
 	
 ENV SFTP_PASS **None**
 
