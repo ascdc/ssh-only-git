@@ -4,8 +4,8 @@ sed -i "s/www-data.*/www-data:x:33:33:www-data:\/home\/www:\/bin\/rbash/g" /etc/
 chattr +i /home/www/.bash_profile 
 chattr -i /home/www/.bash_profile
 
-chown 33:33 /home/*
-chmod 750 /home/*
+chown 33:33 -R /home/www
+chmod 750 -R /home/www
 
 if [ ! -f /.www-data_pw_set ]; then
 	PASS=${SFTP_PASS:-$(pwgen -s 12 1)}
