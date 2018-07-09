@@ -15,7 +15,7 @@ RUN DEBIAN_FRONTEND=noninteractive && \
 	echo "	. ~/.bashrc  " >> /home/www/.bash_profile && \
 	echo "fi  " >> /home/www/.bash_profile && \
 	echo "# User specific environment and startup programs  " >> /home/www/.bash_profile && \
-	echo "PATH=$HOME/programs  " >> /home/www/.bash_profile && \
+	echo "PATH=/home/www/programs  " >> /home/www/.bash_profile && \
 	echo "export PATH" >> /home/www/.bash_profile && \
 	echo "export ll='ls -al'" >> /home/www/.bash_profile && \	
 	ln -s /bin/date /home/www/programs/ && \
