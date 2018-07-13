@@ -17,6 +17,8 @@ RUN DEBIAN_FRONTEND=noninteractive && \
 	mkdir -p /home/www && \
 	chmod 700 /home/www && \
 	chown www-data:www-data /home/www && \
+	cd /home && \
+	ln -s . home && \
 	chmod 700 /usr/local/sbin/make_chroot_jail.sh && \	
 	make_chroot_jail.sh www-data /bin/bash /home && \
 	rsync -av /dev/random /home/dev/random && \
