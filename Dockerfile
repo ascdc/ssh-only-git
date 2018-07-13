@@ -34,7 +34,9 @@ RUN DEBIAN_FRONTEND=noninteractive && \
 	rsync -av /etc/skel/ /home/www/ && \
 	git config --global user.name "www-data" && \
 	git config --global user.email www-data@example.com && \
-	chown www-data:www-data /home/www/* && \
+	chown www-data:www-data /home/www/.bashrc && \
+	chown www-data:www-data /home/www/.bash_logout && \
+	chown www-data:www-data /home/www/.profile && \
 	mkdir /var/run/sshd 
 	
 ENV SFTP_PASS **None**
