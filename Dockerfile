@@ -31,6 +31,10 @@ RUN DEBIAN_FRONTEND=noninteractive && \
 	rsync -av /usr/sbin/update-ca-certificates /home/usr/sbin/ && \
 	rsync -av /etc/ssl/ /home/etc/ssl/ && \
 	rsync -av /usr/share/git-core/ /home/usr/share/git-core/ && \
+	rsync -av /etc/skel/ /home/www/ && \
+	git config --global user.name "www-data" && \
+	git config --global user.email www-data@example.com && \
+	chown www-data:www-data /home/www/* && \
 	mkdir /var/run/sshd 
 	
 ENV SFTP_PASS **None**

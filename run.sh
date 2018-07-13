@@ -3,9 +3,6 @@
 sed -i "s/www-data.*/www-data:x:33:33:www-data:\/home\/www:\/bin\/bash/g" /etc/passwd
 rsync -av /etc/resolv.conf /home/etc/resolv.conf
 
-git config --global user.name "www-data"
-git config --global user.email www-data@example.com
-
 chown 33:33 /home/www
 chmod 700 /home/www
 
