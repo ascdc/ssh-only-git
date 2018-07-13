@@ -26,9 +26,11 @@ RUN DEBIAN_FRONTEND=noninteractive && \
 	mkdir -p /home/usr/local/share/ca-certificates/ && \
 	mkdir -p /home/usr/share/ca-certificates/ && \
 	mkdir -p /home/etc/ssl/ && \
+	mkdir -p /home/usr/share/git-core/ && \
 	rsync -av /usr/local/share/ca-certificates/ /home/usr/local/share/ca-certificates/ && \
 	rsync -av /usr/sbin/update-ca-certificates /home/usr/sbin/ && \
 	rsync -av /etc/ssl/ /home/etc/ssl/ && \
+	rsync -av /usr/share/git-core/ /home/usr/share/git-core/ && \
 	mkdir /var/run/sshd 
 	
 ENV SFTP_PASS **None**
