@@ -27,7 +27,8 @@ RUN DEBIAN_FRONTEND=noninteractive && \
 	mkdir -p /home/etc/ssl/ && \
 	rsync -av /usr/local/share/ca-certificates/ /home/usr/local/share/ca-certificates/ && \
 	rsync -av /usr/sbin/update-ca-certificates /home/usr/sbin/ && \
-	rsync -av /etc/ssl/ /home/etc/ssl/
+	rsync -av /etc/ssl/ /home/etc/ssl/ && \
+	mkdir /var/run/sshd 
 	
 ENV SFTP_PASS **None**
 
