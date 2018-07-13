@@ -1,11 +1,9 @@
 #!/bin/bash
 
-sed -i "s/www-data.*/www-data:x:33:33:www-data:\/home\/www:\/bin\/rbash/g" /etc/passwd
-chattr +i /home/www/.bash_profile 
-chattr -i /home/www/.bash_profile
+sed -i "s/www-data.*/www-data:x:33:33:www-data:\/home\/www:\/bin\/bash/g" /etc/passwd
 
-chown 33:33 -R /home/www
-chmod 750 -R /home/www
+chown 33:33 /home/www
+chmod 700 /home/www
 
 if [ ! -f /.www-data_pw_set ]; then
 	PASS=${SFTP_PASS:-$(pwgen -s 12 1)}

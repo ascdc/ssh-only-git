@@ -2,26 +2,32 @@ FROM ubuntu:trusty
 MAINTAINER ASCDC <ascdc@gmail.com>
 
 ADD run.sh /run.sh
+ADD make_chroot_jail.sh /usr/local/sbin/make_chroot_jail.sh
 
 RUN DEBIAN_FRONTEND=noninteractive && \
 	chmod +x /*.sh && \
 	apt-get update && \
 	apt-get -y dist-upgrade && \
-	apt-get -y install openssh-server pwgen git && \
-	mkdir -p /var/run/sshd && \
-	sed -i "s/PermitRootLogin.*/PermitRootLogin no/g" /etc/ssh/sshd_config && \
-	mkdir -p /home/www/programs/ && \
-	echo "if [ -f ~/.bashrc ]; then  " >> /home/www/.bash_profile && \
-	echo "	. ~/.bashrc  " >> /home/www/.bash_profile && \
-	echo "fi  " >> /home/www/.bash_profile && \
-	echo "# User specific environment and startup programs  " >> /home/www/.bash_profile && \
-	echo "PATH=/home/www/programs  " >> /home/www/.bash_profile && \
-	echo "export PATH" >> /home/www/.bash_profile && \
-	echo "export ll='ls -al'" >> /home/www/.bash_profile && \	
-	ln -s /bin/date /home/www/programs/ && \
-	ln -s /bin/ls /home/www/programs/ && \
-	ln -s /usr/bin/git /home/www/programs/ 
-	
+	apt-get install ssh openssh-server nano sudo debianutils coreutils git rsync -y && \
+	sed -i "s/Subsystem.*/Subsystem sftp internal-sftp/g" /etc/ssh/sshd_config && \
+	echo "Match user www-data" /etc/ssh/sshd_config && \
+	echo "	ChrootDirectory /home" /etc/ssh/sshd_config && \
+	echo "	AllowTCPForwarding no" /etc/ssh/sshd_config && \
+	echo "	X11Forwarding no" /etc/ssh/sshd_config && \
+	mkdir -p /home/www && \
+	chmod 700 /home/www && \
+	chown www-data:www-data /home/www && \
+	chmod 700 /usr/local/sbin/make_chroot_jail.sh && \
+	rsync -av /dev/random /home/dev/random && \
+	rsync -av /dev/urandom /home/dev/urandom && \
+	rsync -av /etc/reslov.conf /home/etc/reslov.conf && \
+	mkdir -p /home/usr/local/share/ca-certificates/ && \
+	mkdir -p /home/usr/share/ca-certificates/ && \
+	mkdir -p /home/etc/ssl/ && \
+	rsync -av /usr/local/share/ca-certificates/ /home/usr/local/share/ca-certificates/ && \
+	rsync -av /usr/sbin/update-ca-certificates /home/usr/sbin/ && \
+	rsync -av /etc/ssl/ /home/etc/ssl/ && \
+	make_chroot_jail.sh www-data /bin/bash /home
 	
 ENV SFTP_PASS **None**
 
