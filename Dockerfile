@@ -10,10 +10,10 @@ RUN DEBIAN_FRONTEND=noninteractive && \
 	apt-get -y dist-upgrade && \
 	apt-get install ssh openssh-server nano sudo debianutils coreutils git rsync pwgen -y && \
 	sed -i "s/Subsystem.*/Subsystem sftp internal-sftp/g" /etc/ssh/sshd_config && \
-	echo "Match user www-data" /etc/ssh/sshd_config && \
-	echo "	ChrootDirectory /home" /etc/ssh/sshd_config && \
-	echo "	AllowTCPForwarding no" /etc/ssh/sshd_config && \
-	echo "	X11Forwarding no" /etc/ssh/sshd_config && \
+	echo "Match user www-data" >> /etc/ssh/sshd_config && \
+	echo "	ChrootDirectory /home" >> /etc/ssh/sshd_config && \
+	echo "	AllowTCPForwarding no" >> /etc/ssh/sshd_config && \
+	echo "	X11Forwarding no" >> /etc/ssh/sshd_config && \
 	mkdir -p /home/www && \
 	chmod 700 /home/www && \
 	chown www-data:www-data /home/www && \
