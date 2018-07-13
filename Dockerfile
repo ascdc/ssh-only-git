@@ -23,7 +23,6 @@ RUN DEBIAN_FRONTEND=noninteractive && \
 	make_chroot_jail.sh www-data /bin/bash /home && \
 	rsync -av /dev/random /home/dev/random && \
 	rsync -av /dev/urandom /home/dev/urandom && \
-	rsync -av /etc/resolv.conf /home/etc/resolv.conf && \
 	mkdir -p /home/usr/local/share/ca-certificates/ && \
 	mkdir -p /home/usr/share/ca-certificates/ && \
 	mkdir -p /home/etc/ssl/ && \

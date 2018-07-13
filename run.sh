@@ -1,6 +1,7 @@
 #!/bin/bash
 
 sed -i "s/www-data.*/www-data:x:33:33:www-data:\/home\/www:\/bin\/bash/g" /etc/passwd
+rsync -av /etc/resolv.conf /home/etc/resolv.conf
 
 chown 33:33 /home/www
 chmod 700 /home/www
