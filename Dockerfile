@@ -8,7 +8,7 @@ RUN DEBIAN_FRONTEND=noninteractive && \
 	chmod +x /*.sh && \
 	apt-get update && \
 	apt-get -y dist-upgrade && \
-	apt-get install ssh openssh-server nano sudo debianutils coreutils git rsync -y && \
+	apt-get install ssh openssh-server nano sudo debianutils coreutils git rsync pwgen -y && \
 	sed -i "s/Subsystem.*/Subsystem sftp internal-sftp/g" /etc/ssh/sshd_config && \
 	echo "Match user www-data" /etc/ssh/sshd_config && \
 	echo "	ChrootDirectory /home" /etc/ssh/sshd_config && \
